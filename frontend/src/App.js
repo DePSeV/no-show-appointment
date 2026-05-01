@@ -12,7 +12,7 @@ function App() {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post('https://noshow-prediction-api-ro8w.onrender.com/predict', formData);
+      const response = await axios.post('https://no-show-appointment.onrender.com/predict', formData);
       setResult(response.data);
     } catch (err) {
       setError('Failed to connect to the prediction engine. Ensure backend is running.');
