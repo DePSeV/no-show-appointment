@@ -1,18 +1,15 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
-import pickle
+import joblib
 from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score, f1_score
 
 app = Flask(__name__)
 CORS(app)
 
-with open('xgboost_model.pkl', 'rb') as f:
-    xgb_model = pickle.load(f)
-with open('lr_base_model.pkl', 'rb') as f:
-    lr_base_model = pickle.load(f)
-with open('lr_extended_model.pkl', 'rb') as f:
-    lr_ext_model = pickle.load(f)
+xgb_model = joblib.load('xgboost_model.pkl')
+lr_base_model = joblib.load('lr_base_model.pkl')
+lr_ext_model = joblib.load('lr_extended_model.pkl')
 
 @app.route('/predict', methods=['POST'])
 def predict_noshow():
